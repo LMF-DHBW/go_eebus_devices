@@ -1,0 +1,162 @@
+.buttonRefresh {
+    background-color: #00092C;
+    color: white;
+    border: 0cm ;
+    /* margin-left: 7%; */
+    /* margin-top: 1%; */
+    height: inherit;
+    /* width: auto; */
+    line-height: 1.2;
+    font-size: xx-large;
+    font-family: var(--bs-body-font-family);
+    /* margin-right: 7%; */
+    padding: 10px;
+    margin-right: 5%;
+    border-radius: 0.25rem;
+}
+
+.headline {
+    width: 70vw;
+    margin-left: 2%;
+
+    font-size: 2rem;
+}
+.fan-button, .relay-button {
+    font-size: x-large;
+}
+
+.btn-success, .btn-danger {
+    margin-top: 0 !important;
+    font-size: x-large;
+}
+
+
+/* #accept-div {
+    border: 2px solid rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    top: 110px;
+    position: relative;
+    margin-left: 3%;
+    margin-right: 44%;
+    text-decoration: none;
+} */
+
+#accept-btn{
+    text-decoration: none !important;
+}
+
+#accept-healine {
+    float: none ;
+}
+
+#cy {
+    height: 75vh;
+    width: 70vw;
+    margin-top: 10px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    float: left;
+    margin-left: 2%;
+}
+
+/* .chart {
+    height: 500px;
+    width: 500px;
+    margin-top: 10px;
+} */
+
+#consumption, #solar, #battery, #temperature {
+    height: 500px;
+    width: 1500px;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+
+#consumptionChart, #solarChart, #batteryChart, tempChart {
+    height: 100% !important;
+}
+
+/* #energySwitch {
+    text-align: center;
+    width: 50%;
+} */
+/* #fan {
+    width: 100%;
+    text-align: center;
+} */
+
+/* #tempChart {
+    width: 100%;
+    max-width: 50vw;
+    max-height: 50vh;
+} */
+
+#enerygSwitch {
+    display: flex;
+    justify-content: center;
+}
+
+.energy-flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#overview-box {
+    margin-bottom: 2%;
+}
+.head-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+    margin-right: 5%;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4%;
+    margin-left: 10%;
+    margin-right: 5%;
+}
+  
+.new-devices-table {
+    margin-left: 2%;
+    margin-right: 10%;
+    margin-top: 2%;
+}
+.btn-cell {
+    text-align: right;
+}
+
+.tbheader {
+    font-size: x-large;
+}
+
+tbody tr:nth-child(odd){
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.cell {
+    vertical-align: middle;
+    font-size: x-large;
+}
+
+.hvac-page {
+    margin-left: 2%;
+}
+
+.hvac-flex {
+    display: flex;
+    align-items: center;
+    margin-right: 5%;
+}
+
+#legende {
+    float: right;
+    /* margin-right: 7%; */
+    margin-top: 2%;
+    width: 20vw;
+    margin-right: 5vw;
+}
+

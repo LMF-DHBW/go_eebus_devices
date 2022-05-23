@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.0/cytoscape.min.js"
+        integrity="sha512-6NNH8uUbdENB10r5FH/4DZviHTQ44GtZ+c+fwSiWM4GekjajHkYanpH0+jWt3meFll/HHWAcxKLcMpSAXuT/Dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">EEBUS Manager</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Overview
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/hvac">HVAC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/energy-management">Energy management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lights">Lights</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">Manage devices</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/add_new">Add new devices</a>
+                            <a class="dropdown-item" href="/remove">Remove trusted devices</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+
+<body scroll="no">
+
+    <div class="head-box" id="overview-box">
+        <h1 class="headline">Connected devices: {{.ConnectedDevices}}</h1>
+        <button class="button buttonRefresh" onClick="history.go(0);">Reload ↻</button>
+    </div>
+
+    <div id="cy"></div>
+    <script>
+            var cy = cytoscape({
+                container: document.getElementById('cy'), // container to render in
+                elements: [
+                {{range .Nodes}}
+                    { group: 'nodes', data: { id: '{{.Name}}', resolved: false }, classes: '{{.Classes}}' },
+                {{end}}
+                {{range .Edges}}
+                    {
+                        group: 'edges',
+                        data: {
+                            id: '{{.Name}}',
+                            target: '{{.Target}}',
+                            source: '{{.Source}}',
+                            directed: 'false'
+                        },
+                        classes: '{{.Classes}}'
+                    },
+                {{end}}
+                ],
+                style: [ // the stylesheet for the graph
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': '#666',
+                            'label': 'data(id)'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': '#ccc',
+                            'target-arrow-color': '#ccc',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier'
+                        }
+                    },
+                    {
+                        selector: '.binding',
+                        style: {
+                            'line-style': 'dashed',
+                            'line-color': 'brown',
+                        }
+                    },
+                    {
+                        selector: '.subscription',
+                        style: {
+                            'line-style': 'dotted',
+                            'line-color': 'orange',
+                        }
+                    },
+                    {
+                        selector: '.gateway',
+                        style: {
+                            'background-color': '#000',
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'circle',
+                    nodeDimensionsIncludeLabels: true
+                }
+            });
+    
+            {{range .Edges}}
+                cy.getElementById('{{.Name}}').style({ 'source-arrow-shape': 'none', 'target-arrow-shape': 'none' });
+            {{end}}
+        </script>
+    <!-- <script src="../scripts/graph.js"></script> -->
+
+    
+<div id="image-div">
+    <img src="../assets/legende.png" id="legende">
+</div>
+
+</body>
+
+</html>
